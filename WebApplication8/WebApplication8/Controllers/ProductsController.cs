@@ -151,6 +151,28 @@ namespace WebApplication8.Controllers
                 //returning the employee list to view
                 return View(productInfo);
             }
+
+            
+        }
+        public ActionResult Search(string search, string SearchItem, string searchDate)
+        {
+            var model = new List<Product>();
+            if (search != null && search != "")
+            {
+                if (SearchItem == "1")
+                {
+                    model = db.Products.Where(x => x.Companyname == search).ToList();
+                }
+                else if (SearchItem == "2")
+                {
+                    model = db.Products.Where(x => x.ProductName == search).ToList();
+                }
+                
+
+            }
+
+
+            return View(model);
         }
     }
 }
